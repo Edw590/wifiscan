@@ -60,15 +60,6 @@ func scan(wifiInterface ...string) (wifilist []Wifi, err error) {
 	case "windows":
 		os = "windows"
 		command = "netsh.exe wlan show networks mode=Bssid"
-		_, _, errRun := runCommand(TimeLimit, "netsh interface set interface name=Wi-Fi admin=disabled")
-		if errRun != nil {
-			log.Debug(errRun)
-		}
-		_, _, errRun = runCommand(TimeLimit, "netsh interface set interface name=Wi-Fi admin=enabled")
-		if errRun != nil {
-			log.Debug(errRun)
-		}
-		time.Sleep(3 * time.Second)
 	case "darwin":
 		os = "darwin"
 		command = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s"
